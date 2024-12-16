@@ -5,6 +5,14 @@ public class globals {
 
     public static boolean wristPickup = false;
     public static boolean armUpdated = false;
+    public static Team team = Team.RED;
+    public static boolean hasSample = true;
+
+    public enum Team{
+        RED,
+        BLUE
+    }
+
     public enum Location{
         LEFT,
         RIGHT

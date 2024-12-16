@@ -108,11 +108,11 @@ public static final class points{
     public static final List<Double> highChamber = Arrays.asList(1000.0,1000.0,.8);
     public static final List<Double> lowChamber = Arrays.asList(0.0,1000.0,.4);
     public static final List<Double> stow = Arrays.asList(0.0,0.0,.0);
-    public static final List<Double> pickUpHigh = Arrays.asList(1000.0,700.0,.65);
+    public static final List<Double> pickUpHigh = Arrays.asList(1100.0,600.0,.65);
     public static final List<Double> sample3PickUp = Arrays.asList(950.0,690.0,.60);
     public static final List<Double> sample2PickUp = Arrays.asList(950.0,670.0,.60);
     public static final List<Double> highStow = Arrays.asList(0.0,2100.0,.65);
-    public static final List<Double> pickUpLow = Arrays.asList(1000.0,610.0,.65);
+    public static final List<Double> pickUpLow = Arrays.asList(1100.0,430.0,.65);
     public static final Map<globals.armVal, List<Double>> map = Stream.of(new Object[][]
 
     {

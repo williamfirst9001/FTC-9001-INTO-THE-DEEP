@@ -19,7 +19,7 @@ import org.firstinspires.ftc.teamcode.constants;
 import org.firstinspires.ftc.teamcode.globals;
 import org.firstinspires.ftc.teamcode.robotHardware;
 import org.firstinspires.ftc.teamcode.storage;
-import org.firstinspires.ftc.teamcode.subsystems.Claw;
+
 import org.firstinspires.ftc.teamcode.subsystems.Wrist;
 import org.firstinspires.ftc.teamcode.subsystems.driveBase;
 import org.firstinspires.ftc.teamcode.subsystems.elevator;
@@ -29,7 +29,7 @@ public class left1Sample extends CommandOpMode {
     private elevator arm = new elevator();
     private driveBase drive = new driveBase();
     private robotHardware robot = robotHardware.getInstance();
-    private Claw claw = new Claw();
+
     private Wrist wrist = new Wrist();
    // private Thread armThread= new Thread(arm);
 
@@ -55,7 +55,7 @@ public class left1Sample extends CommandOpMode {
         schedule(
                 new SequentialCommandGroup(
                         new driveCMD(drive, constants.autoGetPoints.basket),
-                        new armScoreCMD(arm, wrist, claw, globals.armVal.HIGH_BASKET),
+
 
                         new armMoveCMD(arm, wrist, globals.armVal.STOW),
 

@@ -14,30 +14,28 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.armStart;
 import org.firstinspires.ftc.teamcode.commands.armMoveCMD;
-import org.firstinspires.ftc.teamcode.commands.clawCloseCMD;
-import org.firstinspires.ftc.teamcode.commands.clawOpenCMD;
-import org.firstinspires.ftc.teamcode.commands.driveCMD;
+import org.firstinspires.ftc.teamcode.commands.intakeCMD;
 import org.firstinspires.ftc.teamcode.commands.wristCMD;
 import org.firstinspires.ftc.teamcode.constants;
 import org.firstinspires.ftc.teamcode.globals;
 import org.firstinspires.ftc.teamcode.robotHardware;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
+import org.firstinspires.ftc.teamcode.subsystems.Intake;
 import org.firstinspires.ftc.teamcode.subsystems.Wrist;
 import org.firstinspires.ftc.teamcode.subsystems.driveBase;
 import org.firstinspires.ftc.teamcode.subsystems.elevator;
-import org.firstinspires.ftc.teamcode.subsystems.limeLight;
-import org.tensorflow.*;
 
 
-
-@TeleOp(name = "threaded mainOpMode", group = "Linear OpMode")
-public class mainOpMode extends CommandOpMode {
+@TeleOp(name = "red main", group = "Linear OpMode")
+public class RedOpMode extends CommandOpMode {
 
     private elevator arm = new elevator();
     private FtcDashboard dashboard = FtcDashboard.getInstance();
     private driveBase drive = new driveBase();
     private robotHardware robot = robotHardware.getInstance();
     private Claw claw = new Claw();
+    private Intake intake = new Intake();
+
     private Wrist wrist = new Wrist();
     private GamepadEx driverOp;
     private GamepadEx controlOp;
@@ -46,13 +44,15 @@ public class mainOpMode extends CommandOpMode {
     private boolean sniper = false;
     private boolean forceRun = false;
 
+
     
 
 
 
     @Override
     public void initialize() {
-
+        globals.team = globals.Team.RED;
+    
 
         robot.init(hardwareMap);
         CommandScheduler.getInstance().reset();
@@ -79,10 +79,12 @@ public class mainOpMode extends CommandOpMode {
         controlOp.getGamepadButton(GamepadKeys.Button.RIGHT_STICK_BUTTON)
                 .whenPressed(new armMoveCMD(arm,wrist,globals.armVal.PICKUPLOW));
 
-        controlOp.getGamepadButton(GamepadKeys.Button.DPAD_DOWN)
-                .whenPressed(new clawCloseCMD(claw));
         controlOp.getGamepadButton(GamepadKeys.Button.DPAD_UP)
-                .whenPressed(new clawOpenCMD(claw));
+                        .whenPressed(new intakeCMD(intake,true));
+        controlOp.getGamepadButton(GamepadKeys.Button.DPAD_DOWN)
+                .whenPressed(new intakeCMD(intake,false));
+
+
 
 
 

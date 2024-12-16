@@ -4,6 +4,7 @@ package org.firstinspires.ftc.teamcode;
 import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.Robot;
 import com.qualcomm.hardware.limelightvision.Limelight3A;
+import com.qualcomm.hardware.rev.RevColorSensorV3;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -32,6 +33,8 @@ public class robotHardware extends Robot {
     public Limelight3A limelight;
     public IMU imu;
     public elevatorMotors eMotors;
+    public Servo intakeLeft, intakeRight;
+    public RevColorSensorV3 intakeSensor;
 
     //public Blinker led;
     public VoltageSensor voltageSensor;
@@ -57,6 +60,9 @@ public class robotHardware extends Robot {
         this.pivotLimit = hardwareMap.get(TouchSensor.class, "pivotlimit");
         this.wristServo = hardwareMap.get(Servo.class, "wristservo");
         this.limelight = hardwareMap.get(Limelight3A.class,"limeLight");
+        intakeLeft = hardwareMap.get(Servo.class,"intakeLeft");
+        intakeRight = hardwareMap.get(Servo.class,"intakeRight");
+
 
         claw.setPosition(constants.clawPoints.closePos);
         eMotors.init(hardwareMap);
