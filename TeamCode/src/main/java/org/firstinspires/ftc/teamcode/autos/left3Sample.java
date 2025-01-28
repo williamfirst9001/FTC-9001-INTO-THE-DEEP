@@ -54,19 +54,18 @@ public class left3Sample extends CommandOpMode {
         armStart.start();
         telemetry.update();
     }
-    //armStart.stop();
-    robot.eMotors.resetEncoder();
-    robot.pivotMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    armStart.stop();
     robot.eMotors.setRunMode(DcMotor.RunMode.RUN_USING_ENCODER);
     robot.pivotMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     arm.setSetPoint(0, 0);
+    globals.autoRan = true;
     //arm.startThread();
     //  armThread.setName("armThread");
     //armThread.start();
     CommandScheduler.getInstance().schedule(
             new SequentialCommandGroup(
 
-                    new driveCMD(drive, constants.autoGetPoints.basket),
+                    new driveCMD(drive, constants.autoGetPoints.basket).alongWith(new armMoveCMD(arm,wrist, globals.armVal.HIGH_STOW)),
 
                     new SequentialCommandGroup(
                             new armMoveCMD(arm, wrist, globals.armVal.HIGH_BASKET),
@@ -75,33 +74,30 @@ public class left3Sample extends CommandOpMode {
                             new wristCMD(wrist, globals.armVal.STOW),
                             new WaitCommand(300)
                     ),
-                    new armMoveCMD(arm, wrist, globals.armVal.STOW),
-                    new driveCMD(drive, constants.autoGetPoints.sample3),
+                    new armMoveCMD(arm, wrist, globals.armVal.STOW).alongWith(new driveCMD(drive, constants.autoGetPoints.sample3)),
                     new armMoveCMD(arm, wrist, globals.armVal.SAMPLE3PICKUP),
                     new armMoveCMD(arm,wrist,globals.armVal.PICKUPLOW),
                     new clawCloseCMD(claw),
                     new WaitCommand(400),
-                    new armMoveCMD(arm, wrist, globals.armVal.HIGH_STOW),
-                    new driveCMD(drive,arm, constants.autoGetPoints.basket),
-
+                    new armMoveCMD(arm, wrist, globals.armVal.HIGH_STOW).alongWith(new driveCMD(drive,arm, constants.autoGetPoints.basket)),
                     new SequentialCommandGroup(
                             new armMoveCMD(arm, wrist,globals.armVal.HIGH_BASKET),
                             new clawOpenCMD(claw),
+                            new WaitCommand(200),
                             new wristCMD(wrist, globals.armVal.STOW),
                             new WaitCommand(300)
                     ),
-                    new armMoveCMD(arm, wrist, globals.armVal.STOW),
-                    new driveCMD(drive,arm,constants.autoGetPoints.sample2),
+                    new armMoveCMD(arm, wrist, globals.armVal.STOW).alongWith(new driveCMD(drive,arm,constants.autoGetPoints.sample2)),
                     new armMoveCMD(arm, wrist, globals.armVal.SAMPLE2PICKUP),
                     new armMoveCMD(arm,wrist,globals.armVal.PICKUPLOW),
                     new clawCloseCMD(claw),
                     new WaitCommand(200),
-                    new armMoveCMD(arm, wrist, globals.armVal.HIGH_STOW),
-                    new driveCMD(drive,arm, constants.autoGetPoints.basket),
-                    new WaitCommand(200),
+                    new armMoveCMD(arm, wrist, globals.armVal.HIGH_STOW).alongWith(new driveCMD(drive,arm, constants.autoGetPoints.basket)),
+                    new WaitCommand(400),
                     new SequentialCommandGroup(
                             new armMoveCMD(arm, wrist, globals.armVal.HIGH_BASKET),
                             new clawOpenCMD(claw),
+                            new WaitCommand(200),
                             new wristCMD(wrist, globals.armVal.STOW),
                             new WaitCommand(300)
 

@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode;
 public class globals {
     public static boolean hardwareInit = false;
 
+    public static boolean autoRan = false;
+
     public static boolean wristPickup = false;
     public static boolean armUpdated = false;
     public enum Location{
@@ -13,10 +15,16 @@ public class globals {
     public static void setLocation(Location loc){
         location = loc;
     }
+
     public enum ClawState{
         OPEN,
         CLOSED
     }
+    public enum Alliance{
+        RED,
+        BLUE
+    }
+    public Alliance alliance = Alliance.RED;
     public enum ledState{
         TEST1,
         TEST2

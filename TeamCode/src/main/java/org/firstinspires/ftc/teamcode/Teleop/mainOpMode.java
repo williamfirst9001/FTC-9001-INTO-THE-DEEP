@@ -8,8 +8,10 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
+import com.arcrobotics.ftclib.trajectory.TrapezoidProfile;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.I2cDevice;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.armStart;
@@ -30,7 +32,7 @@ import org.tensorflow.*;
 
 
 
-@TeleOp(name = "threaded mainOpMode", group = "Linear OpMode")
+@TeleOp(name = "mainOpMode", group = "Linear OpMode")
 public class mainOpMode extends CommandOpMode {
 
     private elevator arm = new elevator();
@@ -52,10 +54,12 @@ public class mainOpMode extends CommandOpMode {
 
     @Override
     public void initialize() {
-
-
-        robot.init(hardwareMap);
         CommandScheduler.getInstance().reset();
+        
+
+        if(!globals.autoRan){
+            robot.init(hardwareMap);
+        }
 
 
 
@@ -84,22 +88,17 @@ public class mainOpMode extends CommandOpMode {
         controlOp.getGamepadButton(GamepadKeys.Button.DPAD_UP)
                 .whenPressed(new clawOpenCMD(claw));
 
-
-
-       
-
-
-
         armStart.reset();
         drive.setPos(new Pose2d(-10, -62, Math.toRadians(90)));
 
         while(!opModeIsActive() && globals.hardwareInit){
-            armStart.start();
+            //armStart.start();
             telemetry.addData("status","ready");
             telemetry.update();
         }
         armStart.stop();
         robot.eMotors.setRunMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         arm.startThread();
         //armThread.setName("armThread");
         //armThread.start();
@@ -204,6 +203,10 @@ public class mainOpMode extends CommandOpMode {
         telemetry.addData("arm case",arm.getState());
         telemetry.addData("pivot case",arm.getPivotState());
         telemetry.addData("pivot power",arm.getPivotPower());
+        telemetry.addData("elevator runmode",robot.eMotors.getRunMode());
+        telemetry.addData("elevator power",arm.getElevatorPower());
+        telemetry.addData("pivot runmode",robot.pivotMotor.getMode());
+
             telemetry.update();
             if (isStopRequested()) {
                 //armThread.interrupt();

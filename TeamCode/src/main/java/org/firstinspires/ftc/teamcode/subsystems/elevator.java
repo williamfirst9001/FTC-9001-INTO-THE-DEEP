@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.controller.PIDController;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import org.firstinspires.ftc.teamcode.constants;
 import org.firstinspires.ftc.teamcode.globals;
@@ -233,6 +234,7 @@ public class elevator extends SubsystemBase  {
     public void setArmVal(globals.armVal val) {
         armVal = val;
     }
+
 
     public globals.armVal getArmVal() {
         return armVal;

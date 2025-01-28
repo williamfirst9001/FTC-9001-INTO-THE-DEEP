@@ -52,6 +52,9 @@ public class elevatorMotors {
         left.setMotorDisable();
         right.setMotorDisable();
     }
+    public DcMotor.RunMode getRunMode(){
+        return left.getMode();
+    }
 
 
 }

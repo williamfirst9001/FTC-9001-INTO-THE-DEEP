@@ -15,7 +15,7 @@ public class driveBase extends SubsystemBase {
         Trajectory traj = robot.drive.trajectoryBuilder(robot.drive.getPoseEstimate())
                         .lineToLinearHeading(pos)
                         .build();
-        robot.drive.followTrajectory(traj);
+        robot.drive.followTrajectoryAsync(traj);
 
 
     }
@@ -23,13 +23,6 @@ public class driveBase extends SubsystemBase {
 
         robot.drive.setWeightedDrivePower(power);
 
-    }
-    public void move(Pose2d pos){
-        robot.drive.followTrajectorySequence(
-                robot.drive.trajectorySequenceBuilder(new Pose2d())
-                        .lineToLinearHeading(pos)
-                        .build()
-        );
     }
     public void turn(double ang){
         robot.drive.turn(Math.toRadians(ang));

@@ -20,6 +20,7 @@ public class armStart {
             robot.eMotors.setRunMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             robot.eMotors.resetEncoder();
             zeroed = true;
+            robot.eMotors.setRunMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
         if(zeroed&& run){
             robot.eMotors.setPower(-.1);

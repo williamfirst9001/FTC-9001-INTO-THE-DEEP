@@ -49,10 +49,10 @@ public class armMoveCMD extends CommandBase {
     @Override
     public void initialize() {
         m_wrist.setStartTime(clock.seconds());
-
+        m_wrist.move(constants.points.map.get(m_type));
             m_arm.setSetPoint(constants.points.map.get(m_type));
 
-                m_wrist.move(constants.points.map.get(m_type));
+
 
         m_arm.setArmVal(m_type);
         globals.armUpdated = true;

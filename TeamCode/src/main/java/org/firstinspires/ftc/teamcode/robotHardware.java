@@ -71,8 +71,9 @@ public class robotHardware extends Robot {
         pivotMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         pivotMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         eMotors.setRunMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        pivotMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        pivotMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         voltageSensor = hardwareMap.voltageSensor.iterator().next();
+
 
         RevHubOrientationOnRobot.LogoFacingDirection logoDirection = RevHubOrientationOnRobot.LogoFacingDirection.RIGHT;
         RevHubOrientationOnRobot.UsbFacingDirection  usbDirection  = RevHubOrientationOnRobot.UsbFacingDirection.UP;

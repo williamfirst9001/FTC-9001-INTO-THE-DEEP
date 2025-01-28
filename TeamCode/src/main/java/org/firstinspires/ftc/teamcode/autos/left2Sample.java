@@ -61,12 +61,12 @@ public class left2Sample extends CommandOpMode {
         armStart.start();
         telemetry.update();
     }
-    //armStart.stop();
-    robot.eMotors.resetEncoder();
-    robot.pivotMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    armStart.stop();
+
     robot.eMotors.setRunMode(DcMotor.RunMode.RUN_USING_ENCODER);
     robot.pivotMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     arm.setSetPoint(0, 0);
+    globals.autoRan = true;
     //arm.startThread();
     //  armThread.setName("armThread");
     //armThread.start();
