@@ -37,11 +37,6 @@ public class driveCMD extends CommandBase {
             m_arm.update();
         }
     }
-    @Override
-    public boolean isFinished(){
-        Pose2d pos = m_drive.getPos();
-        return Math.abs(pos.getX() - endPos.getX()) < 1 &&
-                Math.abs(pos.getY() - endPos.getY()) < 1 &&
-                Math.abs(Math.toDegrees(pos.getHeading()) - Math.toDegrees(endPos.getHeading())) < 10;
-    }
+
+
 }

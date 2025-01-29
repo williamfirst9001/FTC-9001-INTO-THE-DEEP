@@ -8,15 +8,12 @@ import org.firstinspires.ftc.teamcode.robotHardware;
 
 public class driveBase extends SubsystemBase {
     private robotHardware robot = robotHardware.getInstance();
+    private Pose2d drivePoint = robot.drive.getPoseEstimate();
     public driveBase(){
 
     }
     public void goToPos(Pose2d pos){
-        Trajectory traj = robot.drive.trajectoryBuilder(robot.drive.getPoseEstimate())
-                        .lineToLinearHeading(pos)
-                        .build();
-        robot.drive.followTrajectoryAsync(traj);
-
+        drivePoint = pos;
 
     }
     public void setDriveMotorPower(Pose2d power){
@@ -35,9 +32,18 @@ public class driveBase extends SubsystemBase {
     }
     public void update(){
         robot.drive.update();
+        Trajectory traj = robot.drive.trajectoryBuilder(robot.drive.getPoseEstimate())
+                .lineToLinearHeading(drivePoint)
+                .build();
+        robot.drive.followTrajectoryAsync(traj);
     }
+
     public void setPos(Pose2d pos){
         robot.drive.setPoseEstimate(pos);
+
+    }
+    public boolean isStopped(){
+        return robot.drive.getPoseVelocity().getX()<.3 && robot.drive.getPoseVelocity().getY()<.3 && robot.drive.getPoseVelocity().getHeading()<.3;
     }
 
 }

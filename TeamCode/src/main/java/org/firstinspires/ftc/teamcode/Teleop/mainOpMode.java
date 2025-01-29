@@ -206,7 +206,7 @@ public class mainOpMode extends CommandOpMode {
         telemetry.addData("elevator runmode",robot.eMotors.getRunMode());
         telemetry.addData("elevator power",arm.getElevatorPower());
         telemetry.addData("pivot runmode",robot.pivotMotor.getMode());
-
+        telemetry.addData("is elevator enabled",robot.eMotors.isEnabled());
             telemetry.update();
             if (isStopRequested()) {
                 //armThread.interrupt();

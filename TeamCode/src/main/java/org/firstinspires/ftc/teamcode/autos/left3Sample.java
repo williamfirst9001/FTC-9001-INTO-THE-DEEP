@@ -79,7 +79,7 @@ public class left3Sample extends CommandOpMode {
                     new armMoveCMD(arm,wrist,globals.armVal.PICKUPLOW),
                     new clawCloseCMD(claw),
                     new WaitCommand(400),
-                    new armMoveCMD(arm, wrist, globals.armVal.HIGH_STOW).alongWith(new driveCMD(drive,arm, constants.autoGetPoints.basket)),
+                    new armMoveCMD(arm, wrist, globals.armVal.HIGH_STOW).alongWith(new driveCMD(drive, constants.autoGetPoints.basket)),
                     new SequentialCommandGroup(
                             new armMoveCMD(arm, wrist,globals.armVal.HIGH_BASKET),
                             new clawOpenCMD(claw),
@@ -87,12 +87,12 @@ public class left3Sample extends CommandOpMode {
                             new wristCMD(wrist, globals.armVal.STOW),
                             new WaitCommand(300)
                     ),
-                    new armMoveCMD(arm, wrist, globals.armVal.STOW).alongWith(new driveCMD(drive,arm,constants.autoGetPoints.sample2)),
+                    new armMoveCMD(arm, wrist, globals.armVal.STOW).alongWith(new driveCMD(drive,constants.autoGetPoints.sample2)),
                     new armMoveCMD(arm, wrist, globals.armVal.SAMPLE2PICKUP),
                     new armMoveCMD(arm,wrist,globals.armVal.PICKUPLOW),
                     new clawCloseCMD(claw),
                     new WaitCommand(200),
-                    new armMoveCMD(arm, wrist, globals.armVal.HIGH_STOW).alongWith(new driveCMD(drive,arm, constants.autoGetPoints.basket)),
+                    new armMoveCMD(arm, wrist, globals.armVal.HIGH_STOW).alongWith(new driveCMD(drive, constants.autoGetPoints.basket)),
                     new WaitCommand(400),
                     new SequentialCommandGroup(
                             new armMoveCMD(arm, wrist, globals.armVal.HIGH_BASKET),

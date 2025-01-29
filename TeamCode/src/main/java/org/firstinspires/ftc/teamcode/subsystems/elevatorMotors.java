@@ -17,6 +17,7 @@ public class elevatorMotors {
         //left.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         left.setDirection(DcMotor.Direction.REVERSE);
         left.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        right.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
     public void resetEncoder(){
         left.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -54,6 +55,9 @@ public class elevatorMotors {
     }
     public DcMotor.RunMode getRunMode(){
         return left.getMode();
+    }
+    public boolean isEnabled(){
+        return left.isMotorEnabled() && right.isMotorEnabled();
     }
 
 
