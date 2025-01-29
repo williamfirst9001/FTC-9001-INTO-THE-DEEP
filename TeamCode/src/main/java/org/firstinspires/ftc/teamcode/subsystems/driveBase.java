@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.robotHardware;
 
 public class driveBase extends SubsystemBase {
     private robotHardware robot = robotHardware.getInstance();
-    private Pose2d drivePoint = robot.drive.getPoseEstimate();
+    private Pose2d drivePoint;
     public driveBase(){
 
     }

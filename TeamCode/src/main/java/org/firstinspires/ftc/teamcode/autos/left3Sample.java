@@ -111,6 +111,7 @@ public class left3Sample extends CommandOpMode {
 
         public void run(){
             arm.update();
+            drive.update();
             CommandScheduler.getInstance().run();
 
 
