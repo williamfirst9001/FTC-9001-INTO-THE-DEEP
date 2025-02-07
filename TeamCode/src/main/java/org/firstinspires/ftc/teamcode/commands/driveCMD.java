@@ -37,6 +37,10 @@ public class driveCMD extends CommandBase {
             m_arm.update();
         }
     }
+    @Override
+    public boolean isFinished(){
+        return m_drive.isStopped();
+    }
 
 
 }

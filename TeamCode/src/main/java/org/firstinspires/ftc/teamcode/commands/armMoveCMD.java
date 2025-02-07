@@ -32,6 +32,15 @@ public class armMoveCMD extends CommandBase {
         m_arm.setArmVal(type);
 
     }
+    public armMoveCMD(elevator arm, globals.armVal type){
+        m_arm = arm;
+        m_wrist = null;
+        addRequirements(m_arm);
+        m_type = type;
+        tune = false;
+        m_arm.setArmVal(type);
+
+    }
 
     public armMoveCMD(elevator arm, Wrist wrist, globals.armVal type, globals.forceArm forcearm){
         m_arm = arm;
@@ -48,9 +57,11 @@ public class armMoveCMD extends CommandBase {
 
     @Override
     public void initialize() {
-        m_wrist.setStartTime(clock.seconds());
-        m_wrist.move(constants.points.map.get(m_type));
-            m_arm.setSetPoint(constants.points.map.get(m_type));
+        if (m_wrist !=null) {
+            m_wrist.setStartTime(clock.seconds());
+            m_wrist.move(constants.points.map.get(m_type));
+        }
+        m_arm.setSetPoint(constants.points.map.get(m_type));
 
 
 
@@ -62,10 +73,10 @@ public class armMoveCMD extends CommandBase {
     }
     @Override
     public void execute(){
-
-        m_wrist.setSetPoint(wristPoint);
-
-        m_arm.update();
+        if(m_wrist!= null) {
+            m_wrist.setSetPoint(wristPoint);
+        }
+        //m_arm.update();
 
 
     }

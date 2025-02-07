@@ -57,9 +57,11 @@ public class mainOpMode extends CommandOpMode {
         CommandScheduler.getInstance().reset();
         
 
-        if(!globals.autoRan){
-            robot.init(hardwareMap);
-        }
+            if (!globals.autoRan) {
+                robot.init(hardwareMap);
+            }
+
+            drive.resetDirections();
 
 
 
@@ -88,7 +90,7 @@ public class mainOpMode extends CommandOpMode {
         controlOp.getGamepadButton(GamepadKeys.Button.DPAD_UP)
                 .whenPressed(new clawOpenCMD(claw));
 
-        armStart.reset();
+        //armStart.reset();
         drive.setPos(new Pose2d(-10, -62, Math.toRadians(90)));
 
         while(!opModeIsActive() && globals.hardwareInit){
@@ -96,12 +98,15 @@ public class mainOpMode extends CommandOpMode {
             telemetry.addData("status","ready");
             telemetry.update();
         }
-        armStart.stop();
+        //armStart.stop();
         robot.eMotors.setRunMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         arm.startThread();
         //armThread.setName("armThread");
         //armThread.start();
+        robot.eMotors.setRunMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.pivotMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.eMotors.resetDirection();
     }
 
 

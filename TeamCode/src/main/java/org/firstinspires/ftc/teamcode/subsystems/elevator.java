@@ -123,9 +123,9 @@ public class elevator extends SubsystemBase  {
                 } else {
                     pivotState = pivState.HOLD;
                 }
-        if(elevatorPower >0.1){
+        if(elevatorPower >0.05){
             elevatorState = armState.UP;
-        } else if(elevatorPower<-.1){
+        } else if(elevatorPower<-.05){
             elevatorState = armState.DOWN;
         } else {
             elevatorState = armState.HOLD;

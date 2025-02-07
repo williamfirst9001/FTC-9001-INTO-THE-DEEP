@@ -195,6 +195,11 @@ public class SampleMecanumDrive extends MecanumDrive {
             update();
     }
 
+    public void resetMotorDirection(){
+        rightRear.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
+    }
+
     public boolean isBusy() {
         return trajectorySequenceRunner.isBusy();
     }

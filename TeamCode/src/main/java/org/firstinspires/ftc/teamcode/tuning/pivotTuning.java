@@ -48,7 +48,7 @@ public class pivotTuning extends LinearOpMode {
 
 
 
-            pivot.setPower(12.0/voltageSensor.getVoltage()*PID.calculate(pivot.getCurrentPosition()));
+            //pivot.setPower(12.0/voltageSensor.getVoltage()*PID.calculate(pivot.getCurrentPosition()));
 
 
             telemetry.addData("targetPos", PID.getSetPoint());

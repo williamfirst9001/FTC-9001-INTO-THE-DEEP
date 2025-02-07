@@ -68,7 +68,9 @@ public class left3Sample extends CommandOpMode {
                     new driveCMD(drive, constants.autoGetPoints.basket).alongWith(new armMoveCMD(arm,wrist, globals.armVal.HIGH_STOW)),
 
                     new SequentialCommandGroup(
-                            new armMoveCMD(arm, wrist, globals.armVal.HIGH_BASKET),
+                            new armMoveCMD(arm, globals.armVal.HIGH_BASKET),
+                            new wristCMD(wrist,globals.armVal.HIGH_BASKET),
+                            new WaitCommand(400),
                             new clawOpenCMD(claw),
                             new WaitCommand(200),
                             new wristCMD(wrist, globals.armVal.STOW),
@@ -81,7 +83,9 @@ public class left3Sample extends CommandOpMode {
                     new WaitCommand(400),
                     new armMoveCMD(arm, wrist, globals.armVal.HIGH_STOW).alongWith(new driveCMD(drive, constants.autoGetPoints.basket)),
                     new SequentialCommandGroup(
-                            new armMoveCMD(arm, wrist,globals.armVal.HIGH_BASKET),
+                            new armMoveCMD(arm,globals.armVal.HIGH_BASKET),
+                            new wristCMD(wrist,globals.armVal.HIGH_BASKET),
+                            new WaitCommand(400),
                             new clawOpenCMD(claw),
                             new WaitCommand(200),
                             new wristCMD(wrist, globals.armVal.STOW),
@@ -95,7 +99,9 @@ public class left3Sample extends CommandOpMode {
                     new armMoveCMD(arm, wrist, globals.armVal.HIGH_STOW).alongWith(new driveCMD(drive, constants.autoGetPoints.basket)),
                     new WaitCommand(400),
                     new SequentialCommandGroup(
-                            new armMoveCMD(arm, wrist, globals.armVal.HIGH_BASKET),
+                            new armMoveCMD(arm, globals.armVal.HIGH_BASKET),
+                            new wristCMD(wrist,globals.armVal.HIGH_BASKET),
+                            new WaitCommand(400),
                             new clawOpenCMD(claw),
                             new WaitCommand(200),
                             new wristCMD(wrist, globals.armVal.STOW),
@@ -111,6 +117,7 @@ public class left3Sample extends CommandOpMode {
 
         public void run(){
             arm.update();
+            drive.update();
             CommandScheduler.getInstance().run();
 
 

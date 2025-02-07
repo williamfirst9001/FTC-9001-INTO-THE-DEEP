@@ -23,6 +23,9 @@ public class elevatorMotors {
         left.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         left.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
+    public void resetDirection(){
+        left.setDirection(DcMotor.Direction.REVERSE);
+    }
     public void setPower(double l, double r){
         left.setPower(l);
         right.setPower(r);
